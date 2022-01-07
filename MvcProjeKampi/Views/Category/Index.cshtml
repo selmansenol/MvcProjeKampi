@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+<h3>Tablo Örneği - Kategori</h3>
+<br />
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+#personel {
+border-collapse: collapse;
+width: 100%;
+}
+ 
+#personel td, #personel th {
+border: 1px solid #ddd;
+padding: 8px;
+}
+ 
+#personel tr:nth-child(even){background-color: #f2f2f2;}
+ 
+#personel tr:hover {
+background-color: #2ecc71;
+color:#fff;
+}
+ 
+#personel th {
+padding-top: 12px;
+padding-bottom: 12px;
+text-align: left;
+background-color: #2c3e50;
+color: white;
+}
+</style>
+</head>
+
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300" rel="stylesheet">
+<table id="personel">
+<tr>
+    <th>ID</th>
+    <th>Adı</th>
+    <th>Açıklama</th>
+    <th>Durum</th>
+    <th>Güncelle</th>
+</tr>
+<tr>
+    <td>1</td>
+    <td>Eğitim</td>
+    <td>Açıklama yapıldı</td>
+    <td>True</td>
+    <td><button class="btn btn-success">Güncelle</button></td>
+</tr>
+<tr>
+    <td>2</td>
+    <td>Spor</td>
+    <td>Açıklama beklemede</td>
+    <td>True</td>
+    <td><button class="btn btn-success">Güncelle</button></td>
+</tr>
+<tr>
+    <td>3</td>
+    <td>Kitap</td>
+    <td>Açıklama Yapıldı</td>
+    <td>True</td>
+    <td><button class="btn btn-success">Güncelle</button></td>
+</tr>
+<tr>
+    <td>4</td>
+    <td>Sinema</td>
+    <td>Açıklama bekleniyor</td>
+    <td>True</td>
+    <td><button class="btn btn-success">Güncelle</button></td>
+</tr>
+</table>
+</body>
+</html>
+<br />
+<button class="btn btn-info">Yeni Kategori</button>
+<button class="btn btn-warning">Kategori Listesi</button>
+<button class="btn btn-danger">Kategori Açıklamaları</button>

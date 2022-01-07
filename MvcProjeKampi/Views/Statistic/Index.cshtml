@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #personel {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #personel td, #personel th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #personel tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #personel tr:hover {
+                background-color: #2ecc71;
+                color: #fff;
+            }
+
+            #personel th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #2c3e50;
+                color: white;
+            }
+    </style>
+</head>
+
+<body>
+    
+    <div class="card-deck">
+        <div class="card text-white bg-gradient-navy col-md-5" style="max-width: 40rem" ;>
+            <!-- card text-white bg-primary mb-4-->
+            <!--card text-blue bg-secondary col-md-4-->
+            <div class="card-header" style="text-align:center" ;>@ViewBag.Value1</div>
+            <div class="card-body">
+                <h3 class="card-title">Toplam Kategori </h3>
+                <p class="card-text"></p>
+            </div>
+        </div>
+        <div class="card text-white bg-gradient-navy col-md-5" style="max-width: 40rem" ;>
+            <div class="card-header" style="text-align:center" ;>@ViewBag.Value2</div>
+            <div class="card-body">
+                <h3 class="card-title"> Yazılım kategorisi başlık sayısı </h3>
+                <p class="card-text"></p>
+            </div>
+        </div>
+        <div class="card text-white bg-gradient-navy col-md-5" style="max-width: 40rem" ;>
+            <div class="card-header" style="text-align:center" ;>@ViewBag.Value3</div>
+            <div class="card-body">
+                <h3 class="card-title">İçerisinde 'a' harfi geçen yazar isimleri </h3>
+                <p class="card-text"></p>
+            </div>
+        </div>
+        <div class="card text-white bg-gradient-navy col-md-5" style="max-width: 40rem" ;>
+            <div class="card-header" style="text-align:center" ;>@ViewBag.Value4</div>
+            <div class="card-body">
+                <h3 class="card-title">En Fazla Başlığa Sahip Kategori </h3>
+                <p class="card-text"></p>
+            </div>
+        </div>
+        <div class="card text-white bg-gradient-navy col-md-5" style="max-width: 40rem" ;>
+            <div class="card-header" style="text-align:center" ;>@ViewBag.Value5</div>
+            <div class="card-body">
+                <h3 class="card-title">Aktif-Pasif Kategori Farkı </h3>
+                <p class="card-text"></p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>
+
+

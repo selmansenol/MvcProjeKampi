@@ -1,0 +1,71 @@
+﻿@using EntityLayer.Concrete
+@model List<Category>
+
+
+
+@{
+    Layout = null;
+}
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<br />
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #personel {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #personel td, #personel th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #personel tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #personel tr:hover {
+                background-color: #2ecc71;
+                color: #fff;
+            }
+
+            #personel th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #2c3e50;
+                color: white;
+            }
+    </style>    
+</head>
+
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300" rel="stylesheet">
+    <table id="personel">
+        <tr>
+            <th>ID</th>
+            <th>Adı</th>
+            <th>Açıklama</th>
+            <th>Durum</th>
+        </tr>
+
+        @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.CategoryID </td>
+                    <td>@item.CategoryName</td>
+                    <td>@item.CategoryDescription</td>
+                    <td>@item.CategoryStatus</td>
+                </tr>
+            }
+        
+    </table>
+    <br />
+    <a href="/Category/AddCategory" class="btn btn-info">Yeni Kategori</a>
+</body>
+</html>

@@ -1,0 +1,181 @@
+﻿@using EntityLayer.Concrete
+@model List<Heading>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    string color = ""; //if ile koşul belirtip kategoriye göre color atıyoruz
+    string checkStatus = "";
+    string statusColor = "";
+}
+<br />
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="hold-transition sidebar-mini">
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Header Operations</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+                            <th style="width: 1%">
+                                #
+                            </th>
+                            <th style="width: 20%">
+                                Heading Name
+                            </th>
+                            <th style="width: 15%">
+                                Writer
+                            </th>
+                            <th style="width: 10%">
+                                Status
+                            </th>
+
+                            <th style="width: 8%" class="text-center">
+                                Category
+                            </th>
+                            <th style="width: 20%">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.Category.CategoryName == "Tiyatro")
+                            {
+                                color = "badge badge-danger";
+                            }
+                            if (item.Category.CategoryName == "Spor")
+                            {
+                                color = "badge badge-success";
+                            }
+                            if (item.Category.CategoryName == "Dizi")
+                            {
+                                color = "badge badge-info";
+                            }
+                            if (item.Category.CategoryName == "Film")
+                            {
+                                color = "badge badge-secondary";
+                            }
+                            if (item.Category.CategoryName == "Kitap")
+                            {
+                                color = "badge badge-warning";
+                            }
+
+
+
+                            <tr>
+                                <td>
+                                    @item.HeadingID
+                                </td>
+                                <td>
+                                    <a>
+                                        @item.HeadingName
+                                    </a>
+                                    <br />
+                                    <small>
+                                        @(((DateTime)item.HeadingDate).ToString("dd-MMM-yyyy"))
+                                    </small>
+                                </td>
+                                <td>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <img alt="Avatar" class="table-avatar" src="@item.Writer.WriterImage">
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                <td>
+                                    @switch (item.HeadingStatus)
+                                    {
+                                        case true:
+                                            statusColor = "badge bg-danger";
+                                            break;
+                                        case false:
+                                            statusColor = "badge bg-success";
+                                            break;
+                                    }
+                                    <span class="@statusColor">@item.HeadingStatus</span>
+                                </td>
+                                <td class="project-state">
+                                    <span class="@color">@item.Category.CategoryName</span>
+                                </td>
+                                <td class="project-actions text-right">
+                                    <a class="btn btn-primary btn-sm" href="/Content/ContentByHeading/@item.HeadingID">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        View
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="/Heading/EditHeading/@item.HeadingID">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Edit
+                                    </a>
+                                    <a class="btn btn-@statusColor btn-sm" name="btn1" href="/Heading/DeleteHeading/@item.HeadingID">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        @if (item.HeadingStatus == true)
+                                        {
+                                            statusColor = "badge badge-danger";
+                                            checkStatus = "Pasif Yap";
+                                        }
+                                        else
+                                        {
+                                            statusColor = "badge badge-success";
+                                            checkStatus = "Aktif Yap";
+                                        }
+                                        @checkStatus
+                                        </a>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+<a href="/Heading/Addheading/" class="btn btn-primary">New Page</a>
+
+
+@*<table id="personel">
+            <tr>
+                <th>ID</th>
+                <th>Heading</th>
+                <th>Category</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.HeadingID</td>
+                    <td>@item.HeadingName</td>
+                    <td>@item.Category.CategoryName</td>
+                </tr>
+            }
+        </table>
+
+    <br />
+    <a href="/Heading/AddHeading" class="btn btn-info">New Heading</a>*@
+
+
