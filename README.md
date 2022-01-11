@@ -20,7 +20,7 @@
 ### Authorization Page
 ![Authorization](https://github.com/selmansenol/MvcProjeKampi/blob/master/MvcProjeKampi/Views/SS/Authority.png)
 ### Calendar Page
-![Calendar](https://github.com/selmansenol/MvcProjeKampi/blob/master/MvcProjeKampi/Views/SS/Calendar.png)
+![Calendar](https://github.com/selmansenol/MvcProjeKampi/blob/master/MvcProjeKampi/Views/SS/calendar.png)
 ### Charts Page
 1- Pie Chart
 ![PieChart](https://github.com/selmansenol/MvcProjeKampi/blob/master/MvcProjeKampi/Views/SS/Piechart.png)
