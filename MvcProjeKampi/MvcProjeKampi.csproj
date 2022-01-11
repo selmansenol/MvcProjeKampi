@@ -2,7 +2,6 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -57,7 +56,13 @@
     <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.10.3.6\lib\netstandard2.0\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -117,9 +122,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -130,19 +132,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminCategoryController.cs" />
+    <Compile Include="Controllers\AuthorizationController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HeadingController.cs" />
@@ -154,13 +155,16 @@
     <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
+    <Compile Include="Controllers\WriterPanelContentController.cs" />
+    <Compile Include="Controllers\WriterPanelController.cs" />
+    <Compile Include="Controllers\WriterPanelMessageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Calendar.cs" />
     <Compile Include="Models\CaptchaResponse.cs" />
     <Compile Include="Models\ContactPartialModel.cs" />
-    <Compile Include="Models\IstatistikModel.cs" />
+    <Compile Include="Models\StatisticModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\AdminRoleProvider.cs" />
   </ItemGroup>
@@ -2745,6 +2749,7 @@
     <Content Include="AdminLTE-3.0.4\dist\img\credit\visa.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\default-150x150.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\icons.png" />
+    <Content Include="AdminLTE-3.0.4\dist\img\logo.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\photo1.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\photo2.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\photo3.jpg" />
@@ -4805,6 +4810,105 @@
     <Content Include="AdminLTE-3.0.4\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="AdminLTE-3.0.4\plugins\uplot\uPlot.min.css" />
     <Content Include="AdminLTE-3.0.4\starter.html" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\css\bootstrap.min.css" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\css\default.css" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\css\LineIcons.css" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\css\magnific-popup.css" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\css\slick.css" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\css\style.css" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\fonts\LineIcons.svg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\banner\hero.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\banner\logo.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\banner\shape\shape-1.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\banner\shape\shape-2.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\banner\shape\shape-3.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\banner\shape\shape-4.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\banner\shape\shape-5.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\banner\shape\shape-6.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\b-1.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\b-2.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\b-3.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\bolg-detailes\bolg-detailes.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\bolg-detailes\cm-1.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\bolg-detailes\cm-2.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\bolg-detailes\quote-left.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\bolg-detailes\quote-right.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\bolg-detailes\sidebar-post\p-1.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\bolg-detailes\sidebar-post\p-2.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\blog\bolg-detailes\sidebar-post\p-3.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\call-to-action.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\IMG_6054.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\logo.png" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\page-banner.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\work\w-1.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\work\w-2.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\work\w-3.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\work\w-4.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\work\w-5.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\work\w-6.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\bootstrap.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\jquery.appear.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\jquery.counterup.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\jquery.easing.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\jquery.magnific-popup.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\main.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\parallax.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\popper.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\scrolling-nav.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\slick.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\vendor\jquery-1.12.4.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\vendor\modernizr-3.6.0.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\waypoints.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\css\aos-animation.css" />
+    <Content Include="AdminLTE-3.0.4\web1\css\aos.css" />
+    <Content Include="AdminLTE-3.0.4\web1\css\bootstrap.css" />
+    <Content Include="AdminLTE-3.0.4\web1\css\fontawesome-all.css" />
+    <Content Include="AdminLTE-3.0.4\web1\css\roadmap.css" />
+    <Content Include="AdminLTE-3.0.4\web1\css\simpleLightbox.css" />
+    <Content Include="AdminLTE-3.0.4\web1\css\snow.css" />
+    <Content Include="AdminLTE-3.0.4\web1\css\style.css" />
+    <Content Include="AdminLTE-3.0.4\web1\images\About.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\AdminCategory.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\close.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\contact.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\Ekran Resmi .png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\Error.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\exp.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\g1.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\g2.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\g3.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\g4.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\g5.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\g6.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\g7.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\g8.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\g9.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\Gallery.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\Headings.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\loader.gif" />
+    <Content Include="AdminLTE-3.0.4\web1\images\Message.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\move_up.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\MySkilss.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\next.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\prev.png" />
+    <Content Include="AdminLTE-3.0.4\web1\images\serve.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\stats.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\testimonials.jpg" />
+    <Content Include="AdminLTE-3.0.4\web1\images\Writers.png" />
+    <Content Include="AdminLTE-3.0.4\web1\index.html" />
+    <Content Include="AdminLTE-3.0.4\web1\js\aos.js" />
+    <Content Include="AdminLTE-3.0.4\web1\js\bootstrap.js" />
+    <Content Include="AdminLTE-3.0.4\web1\js\easing.js" />
+    <Content Include="AdminLTE-3.0.4\web1\js\jquery-2.2.3.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\js\jquery.countup.js" />
+    <Content Include="AdminLTE-3.0.4\web1\js\jquery.roadmap.js" />
+    <Content Include="AdminLTE-3.0.4\web1\js\jquery.waypoints.min.js" />
+    <Content Include="AdminLTE-3.0.4\web1\js\move-top.js" />
+    <Content Include="AdminLTE-3.0.4\web1\js\simpleLightbox.js" />
+    <Content Include="AdminLTE-3.0.4\web1\w3layouts-license.txt" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-brands-400.svg" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-regular-400.svg" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-solid-900.svg" />
     <Content Include="AdminLTE-3.0.4\web\css\bootstrap.bundle.js" />
     <Content Include="AdminLTE-3.0.4\web\css\bootstrap.bundle.min.js" />
     <Content Include="AdminLTE-3.0.4\web\css\bootstrap.js" />
@@ -4819,17 +4923,26 @@
     <Content Include="AdminLTE-3.0.4\web\js\jquery-1.11.1.min.js" />
     <Content Include="AdminLTE-3.0.4\web\js\jquery.circlechart.js" />
     <Content Include="AdminLTE-3.0.4\web\w3layouts-License.txt" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="AdminLTE-3.0.4\.browserslistrc" />
     <Content Include="AdminLTE-3.0.4\.bundlewatch.config.json" />
     <Content Include="AdminLTE-3.0.4\.dockerignore" />
@@ -5807,18 +5920,79 @@
     <Content Include="AdminLTE-3.0.4\web\css\bootstrap.bundle.min.js.map" />
     <Content Include="AdminLTE-3.0.4\web\css\bootstrap.js.map" />
     <Content Include="AdminLTE-3.0.4\web\css\bootstrap.min.js.map" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\.DS_Store" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\css\style.css.map" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\fonts\LineIcons.eot" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\fonts\LineIcons.ttf" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\fonts\LineIcons.woff" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\images\.DS_Store" />
+    <Content Include="AdminLTE-3.0.4\web1\assets\js\.DS_Store" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-brands-400.eot" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-brands-400.ttf" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-brands-400.woff" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-brands-400.woff2" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-regular-400.eot" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-regular-400.ttf" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-regular-400.woff" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-regular-400.woff2" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-solid-900.eot" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-solid-900.ttf" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-solid-900.woff" />
+    <Content Include="AdminLTE-3.0.4\web1\webfonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.0.js" />
+    <Content Include="Scripts\jquery-3.6.0.min.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.js" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\SS\About.png" />
+    <Content Include="Views\SS\AdminCategory.png" />
+    <Content Include="Views\SS\Authority.png" />
+    <Content Include="Views\SS\calendar.png" />
+    <Content Include="Views\SS\columnchart.png" />
+    <Content Include="Views\SS\Ekran Resmi .png" />
+    <Content Include="Views\SS\Error.png" />
+    <Content Include="Views\SS\Gallery.png" />
+    <Content Include="Views\SS\Headings.png" />
+    <Content Include="Views\SS\Linechart.png" />
+    <Content Include="Views\SS\Message.png" />
     <Content Include="Views\SS\MySkilss.png" />
+    <Content Include="Views\SS\Piechart.png" />
+    <Content Include="Views\SS\Writers.png" />
     <Content Include="Views\Statistic\Ekran Resmi .png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -5878,22 +6052,45 @@
     <Content Include="Views\Personal\AddCard.cshtml" />
     <Content Include="Views\Personal\Index.cshtml" />
     <Content Include="Views\Personal\UpdateCard.cshtml" />
+    <Content Include="Views\Shared\_WriterLayout.cshtml" />
+    <Content Include="Views\WriterPanel\WriterProfile.cshtml" />
+    <Content Include="Views\WriterPanel\MyHeading.cshtml" />
+    <Content Include="Views\WriterPanel\AllHeading.cshtml" />
+    <Content Include="Views\WriterPanel\EditHeading.cshtml" />
+    <Content Include="Views\WriterPanel\NewHeading.cshtml" />
+    <Content Include="Views\WriterPanelContent\AddContent.cshtml" />
+    <Content Include="Views\WriterPanelContent\ContentByHeading.cshtml" />
+    <Content Include="Views\WriterPanelContent\MyContent.cshtml" />
+    <Content Include="Views\WriterPanelMessage\Delete.cshtml" />
+    <Content Include="Views\WriterPanelMessage\Draft.cshtml" />
+    <Content Include="Views\WriterPanelMessage\GetInboxMessageDetails.cshtml" />
+    <Content Include="Views\WriterPanelMessage\GetSendboxMessageDetails.cshtml" />
+    <Content Include="Views\WriterPanelMessage\Inbox.cshtml" />
+    <Content Include="Views\WriterPanelMessage\MessageListMenu.cshtml" />
+    <Content Include="Views\WriterPanelMessage\NewMessage.cshtml" />
+    <Content Include="Views\WriterPanelMessage\ReadMessage.cshtml" />
+    <Content Include="Views\WriterPanelMessage\Sendbox.cshtml" />
+    <Content Include="Views\WriterPanelMessage\UnReadMessage.cshtml" />
+    <Content Include="Views\Content\GetAllContent.cshtml" />
+    <Content Include="Views\Default\Headings.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\WriterPanelContent\ToDoList.cshtml" />
+    <Content Include="Views\Home\HomePage.cshtml" />
+    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.0.min.map" />
+    <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Chart\About.cshtml" />
+    <Content Include="Views\Chart\Image.cshtml" />
+    <Content Include="Views\Chart\Index.cshtml" />
+    <Content Include="Views\Authorization\AddAdmin.cshtml" />
+    <Content Include="Views\Authorization\EditAdmin.cshtml" />
+    <Content Include="Views\Authorization\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
@@ -5945,11 +6142,12 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

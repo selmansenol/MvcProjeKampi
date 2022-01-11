@@ -144,6 +144,10 @@
     <Compile Include="Migrations\202201071714342_mig_addpersonal.designer.cs">
       <DependentUpon>202201071714342_mig_addpersonal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201082116130_mig_skilladd.cs" />
+    <Compile Include="Migrations\202201082116130_mig_skilladd.designer.cs">
+      <DependentUpon>202201082116130_mig_skilladd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -205,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201071714342_mig_addpersonal.resx">
       <DependentUpon>202201071714342_mig_addpersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201082116130_mig_skilladd.resx">
+      <DependentUpon>202201082116130_mig_skilladd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

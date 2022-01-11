@@ -18,7 +18,7 @@ namespace MvcProjeKampi.Controllers
     [AllowAnonymous]
     public class RegisterController : Controller
     {
-        AdminManager adm = new AdminManager(new EFAdminDal());
+        AdminManager adm = new AdminManager(new EfAdminDal());
         WriterManager wm = new WriterManager(new EfWriterDal());
         RegisterValidator rv = new RegisterValidator();
 
@@ -39,7 +39,7 @@ namespace MvcProjeKampi.Controllers
                 string result = Convert.ToBase64String(sha1.ComputeHash(Encoding.UTF8.GetBytes(password)));
                 admin.AdminPassword = result;
                 admin.AdminRole = "B";
-                adm.Add(admin);
+                adm.AdminAdd(admin);
                 return RedirectToAction("Index", "Login");
             }
             else

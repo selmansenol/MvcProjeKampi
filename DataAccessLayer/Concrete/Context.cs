@@ -17,5 +17,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<Personal> Personals { get; set; }
         public DbSet<Skill> Skills { get; set; }
 
+
     }
 }

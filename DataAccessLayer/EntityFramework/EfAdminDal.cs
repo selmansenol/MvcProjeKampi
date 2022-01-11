@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.EntityFramework
 {
-    public class EFAdminDal : GenericRepository<Admin>, IAdminDal
+    public class EfAdminDal : GenericRepository<Admin>, IAdminDal
     {
 
     }

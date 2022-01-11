@@ -1,6 +1,4 @@
-﻿@{
-    Layout = null;
-}
+﻿@{ Layout = null; }
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CUBE | Dashboard </title>
-    
+    <link rel="shortcut icon" href="~/AdminLTE-3.0.4/dist/img/AdminLTELogo.png" type="image/png">
+
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -68,7 +67,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
                         <li class="nav-item">
                             <a href="/AdminCategory/Index/" class="nav-link ">
                                 <i class="nav-icon fas fa-th"></i>
@@ -95,7 +94,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     Charts
@@ -104,19 +103,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/charts/chartjs.html" class="nav-link">
+                                    <a href="/Chart/Index/" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Pie Chart</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
+                                    <a href="/Chart/About/" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Column Chart</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/charts/inline.html" class="nav-link">
+                                    <a href="/Chart/Image/" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Line Chart</p>
                                     </a>
@@ -142,15 +141,25 @@
                         </li>
                         @if (User.IsInRole("B"))
                         {
-            <li class="nav-item">
-                <a href="pages/calendar.html" class="nav-link">
-                    <i class="nav-icon fas fa-calendar-alt"></i>
-                    <p>
-                        Authorizations
-                    </p>
-                </a>
-            </li>
+                    <li class="nav-item">
+                        <a href="/Authorization/Index/" class="nav-link">
+                            <i class="nav-icon fas fa-calendar-alt"></i>
+                            <p>
+                                Authorizations
+                            </p>
+                        </a>
+                    </li>
 }
+                        <li class="nav-item">
+                            <a href="/Calendar/Index/" class="nav-link">
+                                <i class="nav-icon fas fa-calendar-alt"></i>
+                                <p>
+                                    Calendar
+                                </p>
+                            </a>
+                        </li>
+                       
+
                         <li class="nav-item">
                             <a href="/Gallery/Index/" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
@@ -196,7 +205,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/Default/Headings/18" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Go to Site
@@ -205,7 +214,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/Home/HomePage/" class="nav-link">
                                 <i class="nav-icon far fa-plus-square"></i>
                                 <p>
                                     Sign Out

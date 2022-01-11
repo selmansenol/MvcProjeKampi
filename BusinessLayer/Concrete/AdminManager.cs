@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccess.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,25 @@ namespace BusinessLayer.Concrete
 {
     public class AdminManager : IAdminService
     {
-        private IAdminDal _adminDal;
+        IAdminDal _adminDal;
 
         public AdminManager(IAdminDal adminDal)
         {
             _adminDal = adminDal;
         }
-
-
-        public List<Admin> GetAll()
+        public void AdminAdd(Admin admin)
         {
-            return _adminDal.List();
+            _adminDal.Insert(admin);
+        }
+
+        public void AdminDelete(Admin admin)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AdminUpdate(Admin admin)
+        {
+            _adminDal.Update(admin);
         }
 
         public Admin GetById(int id)
@@ -29,33 +38,14 @@ namespace BusinessLayer.Concrete
             return _adminDal.Get(x => x.AdminID == id);
         }
 
-        public void Add(Admin admin)
+        public List<Admin> GetList()
         {
-            CheckIfAdminExists(admin);
-            _adminDal.Insert(admin);
+            return _adminDal.List();
         }
 
-        public void Update(Admin admin)
+        public List<Admin> GetListByHeadingId(int id)
         {
-            _adminDal.Update(admin);
-        }
-
-        public void Delete(Admin admin)
-        {
-            _adminDal.Delete(admin);
-        }
-
-        public Admin GetAdmin(string mail, string password)
-        {
-            return _adminDal.Get(x => x.AdminUserName == mail && x.AdminPassword == password);
-        }
-
-        private void CheckIfAdminExists(Admin admin)
-        {
-            if (_adminDal.Get(x => x.AdminUserName == admin.AdminUserName) != null)
-            {
-                throw new Exception("Bu kullanıcı daha önce kayıt olmuştur.");
-            }
+            throw new NotImplementedException();
         }
     }
 }

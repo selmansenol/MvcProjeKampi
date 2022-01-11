@@ -1,10 +1,7 @@
 ﻿@using EntityLayer.Concrete
 @model List<Personal>
 
-@{
-    Layout = null;
-}
-<script src="~/AdminLTE-3.0.4/web/css/bootstrap.min.js"></script>
+@{ Layout = null; }
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -14,7 +11,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Skills Page</title>
+    <title>CUBE || My Skills</title>
+    <link rel="shortcut icon" href="~/AdminLTE-3.0.4/dist/img/AdminLTELogo.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Skills Profile Widget template Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login sign up Responsive web template, SmartPhone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
@@ -52,52 +50,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="main-row">
                 @foreach (var item in Model)
                 {
-                    <div class="profile-grid logo wthree">
-                        @if (item.Image != null)
-                        {
-                            <img src="@item.Image" style="width:150px;" alt="">
-                        }
-                        else
-                        {
-                            <img src="~/AdminLTE-3.0.4/dist/img/avatar5.png" style="width:150px;" alt="">
-                        }
+    <div class="profile-grid logo wthree">
+        @if (item.Image != null)
+        {
+<img src="@item.Image" style="width:150px;" alt=""> }
+                else
+                {
+<img src="~/AdminLTE-3.0.4/dist/img/avatar5.png" style="width:150px;" alt="">}
 
-                        <h2>@item.PersonalName @item.PersonalSurname </h2>
-                        <p>@item.PersonalJob</p>
+        <h2>@item.PersonalName @item.PersonalSurname </h2>
+        <p>@item.PersonalJob</p>
 
 
-                    </div>
+    </div>
                     <h3 class="title">My Skills</h3>
-                    <div style="margin-bottom:20px;">
-                        <a href="/Personal/AddCard/" class="btn btn-primary" style=" margin-right:100px; color:white;">Add New Card</a>
-                        <a href="/Personal/UpdateCard/@item.PersonalID" class="btn btn-primary" style=" color:white;">Update Information</a>
-                    </div>
+                                    <div style="margin-bottom:20px;">
+                                        <a href="/Personal/AddCard/" class="btn btn-primary" style=" margin-right:100px; color:white;">Add New Card</a>
+                                        <a href="/Personal/UpdateCard/@item.PersonalID" class="btn btn-primary" style=" color:white;">Update Information</a>
+                                    </div>
 
 
-                    <div class="col-md-6 skills-right bar_group">
-                        <div class='bar_group__bar thin' label='@item.Skill &nbsp;&nbsp; @item.SkillPoint%' value='@item.SkillPoint'></div>
-                        <div class='bar_group__bar thin' label='@item.Skill2 &nbsp;&nbsp; @item.SkillPoint2%' value='@item.SkillPoint2'></div>
-                        <div class='bar_group__bar thin' label='@item.Skill3 &nbsp;&nbsp; @item.SkillPoint3%' value='@item.SkillPoint3'></div>
-                        <div class='bar_group__bar thin' label='@item.Skill4 &nbsp;&nbsp; @item.SkillPoint4%' value='@item.SkillPoint4'></div>
-                        <div class='bar_group__bar thin' label='@item.Skill5 &nbsp;&nbsp; @item.SkillPoint5%' value='@item.SkillPoint5'></div>
-                        <div class='bar_group__bar thin' label='@item.Skill6 &nbsp;&nbsp; @item.SkillPoint6%' value='@item.SkillPoint6'></div>
-                        <div class='bar_group__bar thin' label='@item.Skill7 &nbsp;&nbsp; @item.SkillPoint7%' value='@item.SkillPoint7'></div>
-                        <div class='bar_group__bar thin' label='@item.Skill8 &nbsp;&nbsp; @item.SkillPoint8%' value='@item.SkillPoint8'></div>
-                        <div class='bar_group__bar thin' label='@item.Skill9 &nbsp;&nbsp; @item.SkillPoint9%' value='@item.SkillPoint9'></div>
-                        <div class='bar_group__bar thin' label='@item.Skill10 &nbsp;&nbsp; @item.SkillPoint10%' value='@item.SkillPoint10'></div>
+                                                    <div class="col-md-6 skills-right bar_group">
+                                                        <div class='bar_group__bar thin' label='@item.Skill &nbsp;&nbsp; @item.SkillPoint%' value='@item.SkillPoint'></div>
+                                                        <div class='bar_group__bar thin' label='@item.Skill2 &nbsp;&nbsp; @item.SkillPoint2%' value='@item.SkillPoint2'></div>
+                                                        <div class='bar_group__bar thin' label='@item.Skill3 &nbsp;&nbsp; @item.SkillPoint3%' value='@item.SkillPoint3'></div>
+                                                        <div class='bar_group__bar thin' label='@item.Skill4 &nbsp;&nbsp; @item.SkillPoint4%' value='@item.SkillPoint4'></div>
+                                                        <div class='bar_group__bar thin' label='@item.Skill5 &nbsp;&nbsp; @item.SkillPoint5%' value='@item.SkillPoint5'></div>
+                                                        <div class='bar_group__bar thin' label='@item.Skill6 &nbsp;&nbsp; @item.SkillPoint6%' value='@item.SkillPoint6'></div>
+                                                        <div class='bar_group__bar thin' label='@item.Skill7 &nbsp;&nbsp; @item.SkillPoint7%' value='@item.SkillPoint7'></div>
+                                                        <div class='bar_group__bar thin' label='@item.Skill8 &nbsp;&nbsp; @item.SkillPoint8%' value='@item.SkillPoint8'></div>
+                                                        <div class='bar_group__bar thin' label='@item.Skill9 &nbsp;&nbsp; @item.SkillPoint9%' value='@item.SkillPoint9'></div>
+                                                        <div class='bar_group__bar thin' label='@item.Skill10 &nbsp;&nbsp; @item.SkillPoint10%' value='@item.SkillPoint10'></div>
 
-                    </div>
-                    <div class="social-icons agileits">
-                        <ul>
-                            <li><a href="#"></a></li>
-                            <li><a href="#" class="fb"></a></li>
-                            <li><a href="#" class="be"></a></li>
-                            <li><a href="#" class="gg"></a></li>
-                        </ul>
-                    </div>
-                    <hr />
-                    <br />
-                }
+                                                    </div>
+                                                                    <div class="social-icons agileits">
+                                                                        <ul>
+                                                                            <li><a href="#"></a></li>
+                                                                            <li><a href="#" class="fb"></a></li>
+                                                                            <li><a href="#" class="be"></a></li>
+                                                                            <li><a href="#" class="gg"></a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                                    <hr />
+                                                                                                    <br />}
                 <script src="~/AdminLTE-3.0.4/web/js/bars.js"></script>
                 <div class="clear"> </div>
 

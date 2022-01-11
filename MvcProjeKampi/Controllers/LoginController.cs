@@ -16,6 +16,7 @@ using FluentValidation.Results;
 
 namespace MvcProjeKampi.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         LoginManager loginManager = new LoginManager(new EfLoginDal(), new EfWriterDal());
@@ -98,7 +99,7 @@ namespace MvcProjeKampi.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("HomePage", "Home");
+            return RedirectToAction("Headings", "Default");
         }
 
     }
