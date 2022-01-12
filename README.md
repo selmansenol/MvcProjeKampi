@@ -1,4 +1,16 @@
-# CUBE || Dictionary
+# CUBE || PROJECT CAMP
+
+C#, BOOTSTRAP, N-Tier Architecture, AdminPanel, WriterPanel, CodeFirst
+
+You can access the live demo here with the following information:
+http://selmann-001-site1.ftempurl.com/
+
+Admin Login URL:
+http://selmann-001-site1.ftempurl.com//Login/Index
+
+Admin Login Username: admin2@gmail.com Password : 002
+
+Writer Login Username: selmansenol@hotmail.com Password : 1
 ### Statistic Page
 ![Statistic](https://github.com/selmansenol/MvcProjeKampi/blob/master/MvcProjeKampi/Views/Statistic/Ekran%20Resmi%20.png)
 ### My Skills Page
